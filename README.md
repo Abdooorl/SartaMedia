@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sarta Media
+
+>Sarta Media is a static website for Sarta Media, a modern media company. The site showcases company information, services, and contact details in a clean, responsive design.
+
+## Features
+
+- Fast and SEO-friendly static site
+- Responsive design for all devices
+- Easy to customize and extend
+- Built with [Next.js](https://nextjs.org)
 
 ## Getting Started
 
-First, run the development server:
+To run the website locally:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `src/app/` — Main application files
+- `public/` — Static assets (images, SVGs, etc.)
+- `README.md` — Project documentation
 
-## Learn More
+## Customization
 
-To learn more about Next.js, take a look at the following resources:
+Edit `src/app/page.tsx` to update the homepage content. Global styles are in `src/app/globals.css`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Deploy easily on [Vercel](https://vercel.com/) or any static hosting platform. For Vercel, push your repository and follow their setup instructions.
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project is licensed under the MIT License.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+**Sarta Media** — Modern solutions for media and communication.
