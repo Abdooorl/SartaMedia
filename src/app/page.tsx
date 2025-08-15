@@ -1,16 +1,23 @@
+"use client";
 import Image from "next/image";
-import Hero from "@/components/custom/hero";
-import QuickIntro from "@/components/custom/intro";
-import GlobalPartner from "@/components/custom/globalpartner";
-import Portfolio from "@/components/custom/portolio";
+import Hero from "@/components/hero";
+import QuickIntro from "@/components/intro";
+import GlobalPartner from "@/components/globalpartner";
+import Portfolio from "@/components/portolio";
+import Works from "@/components/works";
+import { useScroll } from "motion/react";
+import { useRef } from "react";
+import Services from "@/components/services";
 
 export default function Home() {
   return (
-    <div className="home font-serif ">
+    <div className="home  font-serif ">
       <Hero />
-      <QuickIntro  />
+      <QuickIntro />
       <GlobalPartner />
       <Portfolio />
+      <Works />
+      <Services />
     </div>
   );
 }

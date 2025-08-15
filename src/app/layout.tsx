@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Inter, Geist_Mono } from "next/font/google";
 import localFonts from "next/font/local";
 import "./globals.css";
-import Navigation from "@/components/custom/navigation";
+import Navigation from "@/components/navigation";
+import { ReactLenis } from "@/utils/lenis";
 
 const inter = Inter({
   variable: "--font-inter-sans",
@@ -54,13 +55,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-      
-        className={`${inter.variable} ${testManuka.variable} font-serif antialiased overflow-x-hidden`}
-      >
-        <Navigation />
-        {children}
-      </body>
+      <ReactLenis root>
+        <body
+          className={`${inter.variable} ${testManuka.variable} font-serif antialiased overflow-x-hidden`}
+        >
+          <Navigation />
+          {children}
+        </body>
+      </ReactLenis>
     </html>
   );
 }
