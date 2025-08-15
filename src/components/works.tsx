@@ -5,7 +5,7 @@ import EventTwo from "@/../public/Events-two.png";
 import EventThree from "@/../public/Events-three.png";
 import EventFour from "@/../public/Events-four.png";
 import { motion, useScroll, useTransform } from "motion/react";
-import { useEffect, useRef } from "react";
+import {  useRef } from "react";
 
 export default function Works() {
   const container = useRef<HTMLDivElement>(null);
