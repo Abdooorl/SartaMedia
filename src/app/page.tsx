@@ -6,6 +6,7 @@ import Portfolio from "@/components/portolio";
 import Works from "@/components/works";
 import Services from "@/components/services";
 import MeetCEO from "@/components/meetceo";
+import ContactUs from "@/components/contact-us";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <Works />
       <Services />
       <MeetCEO />
+      <ContactUs />
     </div>
   );
 }
