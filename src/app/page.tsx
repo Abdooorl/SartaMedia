@@ -1,13 +1,11 @@
 "use client";
-import Image from "next/image";
 import Hero from "@/components/hero";
 import QuickIntro from "@/components/intro";
 import GlobalPartner from "@/components/globalpartner";
 import Portfolio from "@/components/portolio";
 import Works from "@/components/works";
-import { useScroll } from "motion/react";
-import { useRef } from "react";
 import Services from "@/components/services";
+import MeetCEO from "@/components/meetceo";
 
 export default function Home() {
   return (
@@ -18,6 +16,7 @@ export default function Home() {
       <Portfolio />
       <Works />
       <Services />
+      <MeetCEO />
     </div>
   );
 }
