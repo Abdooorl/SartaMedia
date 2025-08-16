@@ -4,6 +4,11 @@ import Input from "./custom/input";
 import { TextArea } from "./custom/input";
 import { title } from "process";
 import Socials from "./custom/socials";
+import {
+  Cursor,
+  CursorFollow,
+  CursorProvider,
+} from "@/components/animate-ui/components/cursor";
 
 export default function ContactUs() {
   const contactData = [
@@ -100,13 +105,15 @@ export default function ContactUs() {
         {contactData.map((item) => (
           <div
             key={item.id}
-            className={`flex flex-col justify-center  md:items-center sm:justify-center ${item.id !== 4 ? "border-b-[0.5px]" : ""} sm:border-r-1 sm:border-b-0 w-full h-[100px] sm:h-[100px] px-[18px] sm:px-[64px] md:p-[0] md:h-[145px]`}
+            className={`flex flex-col justify-center  md:items-center sm:justify-center ${
+              item.id !== 4 ? "border-b-[0.5px]" : ""
+            } sm:border-r-1 sm:border-b-0 w-full h-[100px] sm:h-[100px] px-[18px] sm:px-[64px] md:p-[0] md:h-[145px]`}
           >
             <p className="font-medium text-[#714A97] leading-[100%] text-[28px] md:text-[40px]">
               {item.title}
             </p>
             <p
-              className={`text-[#868686] ${
+              className={`text-[#8C7C9D] ${
                 item.id !== 1 ? "w-[50%] sm:w-[60%]" : "w-full"
               } tracking-custom font-sans md:text-center text-balance font-medium leading-[120%] mt-[8px] text-[15px] sm:text-[16px]`}
             >
@@ -119,6 +126,26 @@ export default function ContactUs() {
       <div className="socials ">
         <Socials />
       </div>
+      <CursorProvider>
+        <Cursor>
+          <svg
+            className="size-6 text-[#5500A8] hidden md:flex"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 40 40"
+          >
+            <path
+              fill="currentColor"
+              d="M1.8 4.4 7 36.2c.3 1.8 2.6 2.3 3.6.8l3.9-5.7c1.7-2.5 4.5-4.1 7.5-4.3l6.9-.5c1.8-.1 2.5-2.4 1.1-3.5L5 2.5c-1.4-1.1-3.5 0-3.3 1.9Z"
+            />
+          </svg>
+        </Cursor>
+
+        <CursorFollow>
+          <div className="bg-[#5500A8] text-white font-medium hidden md:flex tracking-custom font-sans px-3 py-1 rounded-[100px] text-sm shadow-lg">
+            Contact Us
+          </div>
+        </CursorFollow>
+      </CursorProvider>
     </div>
   );
 }
