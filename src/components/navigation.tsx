@@ -4,15 +4,14 @@ import Image from "next/image";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import { useState } from "react";
 
+export const socialNavigations = [
+  { name: "Facebook", url: "https://facebook.com", text: "Text Us" },
+  { name: "Instagram", url: "https://instagram.com", text: "Get a Quote" },
+  { name: "Whatsapp", url: "https://whatsapp.com", text: "Book a Call" },
+];
 
 export default function Navigation() {
   const [isMenuClicked, setIsMenuClicked] = useState(false);
-
-  const socialNavigations = [
-    { name: "Facebook", url: "https://facebook.com", text: "Text Us" },
-    { name: "Instagram", url: "https://instagram.com", text: "Get a Quote" },
-    { name: "Whatsapp", url: "https://whatsapp.com", text: "Book a Call" },
-  ];
 
   const lineProps = {
     stroke: "white",
