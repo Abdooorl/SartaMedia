@@ -12,7 +12,7 @@ export default function Hero() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.025, // Time delay between each character
+        staggerChildren: 0.025, 
       },
     },
   } as const;

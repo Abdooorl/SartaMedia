@@ -11,7 +11,6 @@ import {
   CursorProvider,
 } from "@/components/animate-ui/components/cursor";
 
-// Create a schema for form validation
 const formSchema = z.object({
   name: z.string(),
   email: z.string().email("Please enter a valid email address"),
@@ -20,7 +19,6 @@ const formSchema = z.object({
 });
 
 export default function ContactUs() {
-  // Add form state
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -28,13 +26,11 @@ export default function ContactUs() {
     message: "",
   });
 
-  // Add error state - expanded to include subject
   const [errors, setErrors] = useState<{ email?: string; subject?: string }>(
     {}
   );
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Handle input changes
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -57,44 +53,34 @@ export default function ContactUs() {
     }
   };
 
-  // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Track validation errors
     const newErrors: { email?: string; subject?: string } = {};
 
-    // Validate email
     const emailResult = formSchema.shape.email.safeParse(formData.email);
     if (!emailResult.success) {
       newErrors.email = "Please enter a valid email address";
     }
 
-    // Validate subject
     const subjectResult = formSchema.shape.subject.safeParse(formData.subject);
     if (!subjectResult.success) {
       newErrors.subject = "Please enter a subject";
     }
 
-    // If there are any errors, stop submission
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       setIsSubmitting(false);
       return;
     }
 
-    // Clear errors if validation passes
     setErrors({});
 
-    // Submit form data (add your API call here)
     console.log("Form submitted:", formData);
 
-    // Reset form after submission (optional)
     setFormData({ name: "", email: "", subject: "", message: "" });
     setIsSubmitting(false);
-
-    // You could add a success message here
   };
 
   const contactData = [
@@ -127,7 +113,6 @@ export default function ContactUs() {
         </p>
       </div>
 
-      {/* Map and Input */}
       <div className="map-contact-us w-full items-center flex flex-col md:flex-row relative">
         <div className="map md:w-[50%] w-full h-[500px] md:h-[calc(100vh-100px)]">
           <Map />

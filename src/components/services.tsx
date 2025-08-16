@@ -9,9 +9,12 @@ import { ClapIcon } from "./ui/clap";
 import { TelescopeIcon } from "./ui/telescope";
 import { JSX } from "react";
 
-
 export default function Services() {
-  const servicesData : { icon: JSX.Element; title: string; description: string; }[] = [
+  const servicesData: {
+    icon: JSX.Element;
+    title: string;
+    description: string;
+  }[] = [
     {
       icon: <AudioLinesIcon />,
       title: "Sound & PA Systems",
@@ -28,7 +31,7 @@ export default function Services() {
       description: "Set the perfect mood with our lighting solutions.",
     },
     {
-      icon: <PartyPopperIcon />, 
+      icon: <PartyPopperIcon />,
       title: "Event Decoration",
       description: "Transform your space into something extraordinary.",
     },
@@ -40,7 +43,7 @@ export default function Services() {
     {
       icon: <ClapIcon />,
       title: "Stage & Stage Design",
-      description:   "Make your event unforgettable with our stage solutions.",
+      description: "Make your event unforgettable with our stage solutions.",
     },
   ];
   return (
