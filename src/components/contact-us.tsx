@@ -1,8 +1,9 @@
 "use client";
+import { useState } from "react";
+import { z } from "zod";
 import Map from "./map/index";
 import Input from "./custom/input";
 import { TextArea } from "./custom/input";
-import { title } from "process";
 import Socials from "./custom/socials";
 import {
   Cursor,
@@ -10,7 +11,92 @@ import {
   CursorProvider,
 } from "@/components/animate-ui/components/cursor";
 
+// Create a schema for form validation
+const formSchema = z.object({
+  name: z.string(),
+  email: z.string().email("Please enter a valid email address"),
+  subject: z.string().min(1, "Please enter a subject"),
+  message: z.string(),
+});
+
 export default function ContactUs() {
+  // Add form state
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  // Add error state - expanded to include subject
+  const [errors, setErrors] = useState<{ email?: string; subject?: string }>(
+    {}
+  );
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Handle input changes
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
+
+    // Clear error when user types in email or subject field
+    if (
+      (id === "email" && errors.email) ||
+      (id === "subject" && errors.subject)
+    ) {
+      setErrors((prev) => {
+        const newErrors = { ...prev };
+        delete newErrors[id as keyof typeof errors];
+        return newErrors;
+      });
+    }
+  };
+
+  // Handle form submission
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    // Track validation errors
+    const newErrors: { email?: string; subject?: string } = {};
+
+    // Validate email
+    const emailResult = formSchema.shape.email.safeParse(formData.email);
+    if (!emailResult.success) {
+      newErrors.email = "Please enter a valid email address";
+    }
+
+    // Validate subject
+    const subjectResult = formSchema.shape.subject.safeParse(formData.subject);
+    if (!subjectResult.success) {
+      newErrors.subject = "Please enter a subject";
+    }
+
+    // If there are any errors, stop submission
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Clear errors if validation passes
+    setErrors({});
+
+    // Submit form data (add your API call here)
+    console.log("Form submitted:", formData);
+
+    // Reset form after submission (optional)
+    setFormData({ name: "", email: "", subject: "", message: "" });
+    setIsSubmitting(false);
+
+    // You could add a success message here
+  };
+
   const contactData = [
     {
       id: 1,
@@ -25,7 +111,7 @@ export default function ContactUs() {
     {
       id: 3,
       title: "Phone Number",
-      string: "+2348025519631 +2348025519631 ",
+      string: "+2348025519631 +2347080000404 ",
     },
     {
       id: 4,
@@ -56,7 +142,11 @@ export default function ContactUs() {
             </p>
           </div>
           <div className="inputs-button flex flex-col gap-[40px]">
-            <div className="input-field flex flex-col gap-[20px]">
+            <form
+              className="input-field flex flex-col gap-[20px]"
+              id="contact-form"
+              onSubmit={handleSubmit}
+            >
               <div className="input flex flex-col gap-[8px]">
                 <label
                   className="font-sans text-[14px] font-medium leading-[100%] text-[#868686] tracking-custom"
@@ -64,7 +154,13 @@ export default function ContactUs() {
                 >
                   Name
                 </label>
-                <Input type="text" placeholder="" id="name" />
+                <Input
+                  type="text"
+                  placeholder=""
+                  id="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                />
               </div>
               <div className="input flex flex-col gap-[8px]">
                 <label
@@ -73,7 +169,18 @@ export default function ContactUs() {
                 >
                   Email Address
                 </label>
-                <Input type="email" placeholder="" id="email" />
+                <Input
+                  type="email"
+                  placeholder=""
+                  id="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+                {errors.email && (
+                  <p className="text-red-500 font-sans tracking-custom text-sm mt-[-4px]">
+                    {errors.email}
+                  </p>
+                )}
               </div>
               <div className="input flex flex-col gap-[8px]">
                 <label
@@ -82,7 +189,18 @@ export default function ContactUs() {
                 >
                   Subject
                 </label>
-                <Input type="text" placeholder="" id="subject" />
+                <Input
+                  type="text"
+                  placeholder=""
+                  id="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                />
+                {errors.subject && (
+                  <p className="text-red-500 font-sans tracking-custom text-sm mt-[-4px]">
+                    {errors.subject}
+                  </p>
+                )}
               </div>
               <div className="input flex flex-col gap-[8px]">
                 <label
@@ -91,11 +209,21 @@ export default function ContactUs() {
                 >
                   Message
                 </label>
-                <TextArea placeholder="" id="message" />
+                <TextArea
+                  placeholder=""
+                  id="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                />
               </div>
-            </div>
-            <button className="bg-[#714A97] w-full h-[56px] font-medium text-[20px] rounded-[16px] text-white py-[12px] px-[24px]">
-              Send Message
+            </form>
+            <button
+              type="submit"
+              form="contact-form"
+              className="bg-[#714A97] w-full h-[56px] font-medium text-[20px] rounded-[16px] text-white py-[12px] px-[24px] disabled:opacity-70"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Sending..." : "Send Message"}
             </button>
           </div>
         </div>
@@ -107,14 +235,16 @@ export default function ContactUs() {
             key={item.id}
             className={`flex flex-col justify-center  md:items-center sm:justify-center ${
               item.id !== 4 ? "border-b-[0.5px]" : ""
-            } sm:border-r-1 sm:border-b-0 w-full h-[100px] sm:h-[100px] px-[18px] sm:px-[64px] md:p-[0] md:h-[145px]`}
+            } sm:border-r-1 sm:border-b-0 w-full h-[120px] sm:h-[100px] px-[18px] sm:px-[64px] md:p-[0] md:h-[145px]`}
           >
             <p className="font-medium text-[#714A97] leading-[100%] text-[28px] md:text-[40px]">
               {item.title}
             </p>
             <p
               className={`text-[#8C7C9D] ${
-                item.id !== 1 ? "w-[50%] sm:w-[60%]" : "w-full"
+                item.id !== 1
+                  ? "w-[50%] sm:w-[60%]"
+                  : "w-[90%] text-wrap sm:text-balance"
               } tracking-custom font-sans md:text-center text-balance font-medium leading-[120%] mt-[8px] text-[15px] sm:text-[16px]`}
             >
               {item.string}

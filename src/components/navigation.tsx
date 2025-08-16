@@ -5,9 +5,17 @@ import { AnimatePresence, motion, Variants } from "framer-motion";
 import { useState } from "react";
 
 export const socialNavigations = [
-  { name: "Facebook", url: "https://facebook.com", text: "Text Us" },
-  { name: "Instagram", url: "https://instagram.com", text: "Get a Quote" },
-  { name: "Whatsapp", url: "https://whatsapp.com", text: "Book a Call" },
+  {
+    name: "Facebook",
+    url: "https://www.facebook.com/sartaevents",
+    text: "Text Us",
+  },
+  {
+    name: "Instagram",
+    url: "https://www.instagram.com/sartamedia?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+    text: "Get a Quote",
+  },
+  { name: "Whatsapp", url: "https://wa.link/rsajad", text: "Book a Call" },
 ];
 
 export default function Navigation() {

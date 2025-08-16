@@ -7,6 +7,7 @@ import Works from "@/components/works";
 import Services from "@/components/services";
 import MeetCEO from "@/components/meetceo";
 import ContactUs from "@/components/contact-us";
+import Footer from "@/components/footer";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       <Services />
       <MeetCEO />
       <ContactUs />
+      <Footer />
     </div>
   );
 }

@@ -34,6 +34,8 @@ export default function ImageCard({
       >
         <motion.div style={{ scale: imageScale }} className="img">
           <Image
+            priority={true}
+            fetchPriority="high"
             src={image.src}
             alt={image.alt}
             className="object-cover sm:rounded-[40px]  rounded-[32px] w-full sm:h-[500px] h-[70vh]"
