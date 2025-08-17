@@ -4,6 +4,7 @@ import localFonts from "next/font/local";
 import "./globals.css";
 import Navigation from "@/components/navigation";
 import { ReactLenis } from "@/utils/lenis";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({
   variable: "--font-inter-sans",
@@ -61,6 +62,7 @@ export default function RootLayout({
         >
           <Navigation />
           {children}
+          <Analytics />
         </body>
       </ReactLenis>
     </html>
