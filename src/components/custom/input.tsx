@@ -52,10 +52,11 @@ export function TextArea({
     <textarea
       placeholder={placeholder}
       value={value || ""} // Add fallback for undefined
+      maxLength={500} // Add maxLength prop
       id={id}
       name={name}
       onChange={onChange} // Just pass the function directly
-      className={` h-[80px] pt-[12px] border-1 border-[#E2E2E2] font-sans text-[16px] sm:text-[15px] tracking-[-0.6px] rounded-[16px] px-[16px] focus:outline-none focus:ring-[1.5px] focus:ring-[#d4a5ff82] ${className}`}
+      className={` h-[82px] pt-[12px] border-1 border-[#E2E2E2] font-sans text-[16px] sm:text-[15px] tracking-[-0.6px] rounded-[16px] px-[16px] focus:outline-none focus:ring-[1.5px] focus:ring-[#8400ff82] ${className}`}
       {...props}
     />
   );
